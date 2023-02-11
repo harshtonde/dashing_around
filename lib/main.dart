@@ -40,10 +40,21 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              DashTextField(),
-              DashTextField(),
-              DashTextField(),
+            children: <Widget>[
+              DashTextField(
+                lostFocusAction: () {
+                  print("Text field lost focus");
+                  return Future.value();
+                },
+                labelText: "Label",
+                hintText: "Enter text here",
+                backgroundColor: Colors.transparent,
+                isFilled: true,
+                textColor: Colors.black,
+                borderRadius: 8.0,
+                borderColor: Colors.blueAccent,
+                errorBorderColor: Colors.red,
+              ),
             ],
           ),
         ),
