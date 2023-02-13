@@ -1,3 +1,4 @@
+import 'package:dashing_around/pincode_field.dart';
 import 'package:dashing_around/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -55,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderColor: Colors.blueAccent,
                 errorBorderColor: Colors.red,
               ),
+              DashPinCodeField(),
             ],
           ),
         ),

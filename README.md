@@ -7,6 +7,7 @@ This is a test project created in Flutter to experiment with different features 
 ## Features
 
 - TextField with Lost Focus function
+- Pin Code field with obscure toggle and masking (for digits only)
 
 ## Getting Started
 
