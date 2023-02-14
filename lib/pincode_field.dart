@@ -3,7 +3,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class DashPinCodeField extends StatefulWidget {
-  const DashPinCodeField({super.key});
+  const DashPinCodeField({Key? key}) : super(key: key);
 
   @override
   State<DashPinCodeField> createState() => _DashPinCodeFieldState();

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class DashTextField extends StatefulWidget {
   const DashTextField({
-    super.key,
+    Key? key,
     this.lostFocusAction,
     this.obscureText,
     this.hintText,
@@ -16,7 +16,7 @@ class DashTextField extends StatefulWidget {
     this.isFilled,
     this.textColor,
     this.errorBorderColor,
-  });
+  }) : super(key: key);
 
   final Future<dynamic> Function()? lostFocusAction;
   final bool? obscureText;
