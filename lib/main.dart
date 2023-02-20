@@ -2,6 +2,8 @@ import 'package:dashing_around/pincode_field.dart';
 import 'package:dashing_around/textfield.dart';
 import 'package:flutter/material.dart';
 
+import 'dropdown_search.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -57,6 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 errorBorderColor: Colors.red,
               ),
               DashPinCodeField(),
+              DashDropDownSearch(
+                onSelected: (() {
+                  print("Dropdown selected");
+                }),
+                response: "null",
+              ),
             ],
           ),
         ),
