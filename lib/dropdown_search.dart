@@ -6,6 +6,8 @@ class DashDropDownSearch extends StatefulWidget {
       {Key? key,
       this.width,
       this.height,
+      this.optionBoxMinHeight,
+      this.optionBoxMaxHeight,
       this.dropDownHintText,
       this.dropDownLabelText,
       this.noMatchingText,
@@ -19,11 +21,13 @@ class DashDropDownSearch extends StatefulWidget {
       this.borderWidthFocused,
       required this.onSelected,
       this.cursorColor,
-      required this.response})
+      required this.options})
       : super(key: key);
 
   final double? width;
   final double? height;
+  final double? optionBoxMinHeight;
+  final double? optionBoxMaxHeight;
   final String? dropDownHintText;
   final String? dropDownLabelText;
   final String? noMatchingText;
@@ -37,7 +41,7 @@ class DashDropDownSearch extends StatefulWidget {
   final double? borderWidthFocused;
   final Function() onSelected;
   final Color? cursorColor;
-  final dynamic response;
+  final List<String> options;
 
   @override
   State<DashDropDownSearch> createState() => _DashDropDownSearchState();
@@ -46,7 +50,7 @@ class DashDropDownSearch extends StatefulWidget {
 class _DashDropDownSearchState extends State<DashDropDownSearch> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: widget.width,
       child: DropdownSearch<String>(
         onChanged: (value) {
@@ -56,9 +60,9 @@ class _DashDropDownSearchState extends State<DashDropDownSearch> {
         popupProps: PopupProps.menu(
           showSearchBox: true,
           showSelectedItems: true,
-          constraints: const BoxConstraints(
-            minHeight: 100,
-            maxHeight: 300,
+          constraints: BoxConstraints(
+            minHeight: widget.optionBoxMinHeight ?? 300,
+            maxHeight: widget.optionBoxMaxHeight ?? 400,
           ),
           emptyBuilder: (context, searchEntry) => Container(
             height: 70,
@@ -87,7 +91,7 @@ class _DashDropDownSearchState extends State<DashDropDownSearch> {
             ),
           ),
         ),
-        items: ["Brazil", "Italia (Disabled)", "Tunisia", "Canada", "Tunisia"],
+        items: widget.options,
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
             labelText: widget.dropDownLabelText,
