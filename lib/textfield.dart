@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 //this is a textfield that implements the lostFocusAction
 
+//public function for FlutterFlow custom action
+void clearDashTextField() {
+  DashTextField._dashTextFieldState?.clearTextField();
+}
+
 class DashTextField extends StatefulWidget {
   const DashTextField({
     Key? key,
@@ -32,10 +37,12 @@ class DashTextField extends StatefulWidget {
 
   @override
   State<DashTextField> createState() => DashTextFieldState();
+  static DashTextFieldState? _dashTextFieldState;
 }
 
 class DashTextFieldState extends State<DashTextField> {
   late FocusNode _focusNode;
+  late TextEditingController _controller;
   String? _textFieldValue;
 
   @override
@@ -43,12 +50,15 @@ class DashTextFieldState extends State<DashTextField> {
     super.initState();
     _focusNode = FocusNode();
     _focusNode.addListener(_onFocusChange);
+    _controller = TextEditingController();
+    DashTextField._dashTextFieldState = this;
   }
 
   @override
   void dispose() {
     _focusNode.removeListener(_onFocusChange);
     _focusNode.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -60,11 +70,18 @@ class DashTextFieldState extends State<DashTextField> {
     }
   }
 
+  void clearTextField() {
+    setState(() {
+      _controller.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        controller: _controller,
         onChanged: (value) {
           setState(() {
             _textFieldValue = value;
@@ -80,8 +97,8 @@ class DashTextFieldState extends State<DashTextField> {
           fillColor: widget.backgroundColor ?? Colors.transparent,
           filled: widget.isFilled ?? false,
           border: const OutlineInputBorder(),
-          labelText: widget.labelText ?? "Label Text",
-          hintText: widget.hintText ?? "Hint Text",
+          labelText: widget.labelText ?? "Label",
+          hintText: widget.hintText ?? "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: widget.borderColor ?? Colors.black,

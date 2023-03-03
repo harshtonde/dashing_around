@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return Future.value();
                 },
                 labelText: "Label",
-                hintText: "Enter text here",
+                hintText: "",
                 backgroundColor: Colors.transparent,
                 isFilled: true,
                 textColor: Colors.black,
@@ -58,24 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderColor: Colors.blueAccent,
                 errorBorderColor: Colors.red,
               ),
-              DashPinCodeField(),
-              DashDropDownSearch(
-                onSelected: (() {
-                  print("Dropdown selected");
-                }),
-                options: [
-                  "Option 1",
-                  "Option 2",
-                  "Option 3",
-                  "Option 4",
-                  "Option 5",
-                  "Option 6",
-                  "Option 7",
-                  "Option 8",
-                  "Option 9",
-                  "Option 10"
-                ],
-              ),
+              ElevatedButton(
+                  onPressed: () {
+                    clearDashTextField();
+                  },
+                  child: const Text("Clear TextField")),
             ],
           ),
         ),
